@@ -1,0 +1,16 @@
+{
+  "name": "nodejs_practice_basic_site",
+  "version": "1.0.0",
+  "description": "Basic site as NodeJS practice. Part of The Odin Project's curriculum.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "violet",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
