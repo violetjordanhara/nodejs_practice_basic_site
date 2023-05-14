@@ -50,12 +50,27 @@ function handleRequest(request, response){
     if (request.url === '/'){
         fs.readFile(path.join(__dirname,'project', 'index.html'), (err, content) =>{
             if (err) throw err;
+            response.writeHead(200, {'Content-Type': 'text/html'})
             response.end(content)
         })
     }
     if (request.url === '/about'){
         fs.readFile(path.join(__dirname,'project', 'about.html'), (err, content) =>{
             if (err) throw err;
+            response.writeHead(200, {'Content-Type': 'text/html'})
+            response.end(content)
+        })
+    }
+    if (request.url === '/contact-me'){
+        fs.readFile(path.join(__dirname,'project', 'contact-me.html'), (err, content) =>{
+            if (err) throw err;
+            response.writeHead(200, {'Content-Type': 'text/html'})
+            response.end(content)
+        })
+    }else{
+        fs.readFile(path.join(__dirname, 'project', '404.html'), (err, content) =>{
+            if (err) throw err;
+            response.writeHead(200, {'Content-Type': 'text/html'})
             response.end(content)
         })
     }
