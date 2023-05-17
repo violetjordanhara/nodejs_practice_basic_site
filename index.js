@@ -1,6 +1,37 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('node:http');
+const express = require("express");
+const app = express();
+
+
+const port = 8081;
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, '/project', 'index.html'), 'about', err=>{
+     if (err) throw err;
+    console.log("index.html file created")
+    });
+});
+
+app.get("/about", (req, res) => {
+    res.sendFile(path.join(__dirname, '/project', 'about.html'), 'index', err =>{
+        if (err) throw err;
+        console.log("about.html file created")
+    })
+})
+
+app.get("/contact-me", (req, res) => {
+    res.sendFile(path.join(__dirname, '/project', 'contact-me.html'), 'contact', err =>{
+        if (err) throw err;
+        console.log("contact-me.html file created")
+    })
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+
 
 // //create project directory 
 // fs.mkdir(path.join(__dirname, '/project'), {}, err=>{
@@ -41,46 +72,47 @@ const http = require('node:http');
 // }).listen(8081, () => console.log('server running'));
 
 //define a port we want to listen to
-const PORT=8080; 
+// const PORT=8080; 
 
 //create a function which handles requests and send response. send the pages according to request url
 //run npm run dev, look and change the script to run nodemon
-function handleRequest(request, response){
-    //response.end('It Works!! Path Hit: ' + request.url);
-    if (request.url === '/'){
-        fs.readFile(path.join(__dirname,'project', 'index.html'), (err, content) =>{
-            if (err) throw err;
-            response.writeHead(200, {'Content-Type': 'text/html'})
-            response.end(content)
-        })
-    }
-    if (request.url === '/about'){
-        fs.readFile(path.join(__dirname,'project', 'about.html'), (err, content) =>{
-            if (err) throw err;
-            response.writeHead(200, {'Content-Type': 'text/html'})
-            response.end(content)
-        })
-    }
-    if (request.url === '/contact-me'){
-        fs.readFile(path.join(__dirname,'project', 'contact-me.html'), (err, content) =>{
-            if (err) throw err;
-            response.writeHead(200, {'Content-Type': 'text/html'})
-            response.end(content)
-        })
-    }else{
-        fs.readFile(path.join(__dirname, 'project', '404.html'), (err, content) =>{
-            if (err) throw err;
-            response.writeHead(200, {'Content-Type': 'text/html'})
-            response.end(content)
-        })
-    }
-}
+// function handleRequest(request, response){
+//     //response.end('It Works!! Path Hit: ' + request.url);
+//     if (request.url === '/'){
+//         fs.readFile(path.join(__dirname,'project', 'index.html'), (err, content) =>{
+//             if (err) throw err;
+//             response.writeHead(200, {'Content-Type': 'text/html'})
+//             response.end(content)
+//         })
+//     }
+//     if (request.url === '/about'){
+//         fs.readFile(path.join(__dirname,'project', 'about.html'), (err, content) =>{
+//             if (err) throw err;
+//             response.writeHead(200, {'Content-Type': 'text/html'})
+//             response.end(content)
+//         })
+//     }
+//     if (request.url === '/contact-me'){
+//         fs.readFile(path.join(__dirname,'project', 'contact-me.html'), (err, content) =>{
+//             if (err) throw err;
+//             response.writeHead(200, {'Content-Type': 'text/html'})
+//             response.end(content)
+//         })
+//     }else{
+//         fs.readFile(path.join(__dirname, 'project', '404.html'), (err, content) =>{
+//             if (err) throw err;
+//             response.writeHead(200, {'Content-Type': 'text/html'})
+//             response.end(content)
+//         })
+//     }
+// }
 
 //Create a server
-var server = http.createServer(handleRequest);
+// var server = http.createServer(handleRequest);
 
-//Lets start our server
-server.listen(PORT, function(){
-    //Callback triggered when server is successfully listening. Hurray!
-    console.log("Server listening on: http://localhost:%s", PORT);
-});
+// //Lets start our server
+// server.listen(PORT, function(){
+//     //Callback triggered when server is successfully listening. Hurray!
+//     console.log("Server listening on: http://localhost:%s", PORT);
+// });
+
